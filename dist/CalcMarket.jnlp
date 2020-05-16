@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="CalcMarket.jnlp">
+  <information>
+    <title>CalcMarket</title>
+    <vendor>Merce</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="CalcMarket.jar" size="117530" download="eager" />
+    <jar href="lib\sqlite-jdbc-3.7.2.jar" size="3201128" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="Vista.InterfazCodigo"  name="CalcMarket" />
+  <update check="always"/>
+</jnlp>

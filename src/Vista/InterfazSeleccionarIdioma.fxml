@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane fx:id="frame" text="Idioma" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.InterfazSeleccionarIdiomaController">
+   <content>
+      <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#Enter" prefHeight="480.0" prefWidth="640.0">
+         <children>
+            <Label fx:id="lblSeleccionarIdioma" layoutX="225.0" layoutY="43.0" text="Selecciona idioma" />
+            <ComboBox fx:id="cmbIdioma" layoutX="198.0" layoutY="138.0" onKeyPressed="#Enter" prefWidth="150.0" promptText="Selecciona Idioma" />
+            <Button fx:id="btnAceptar" layoutX="247.0" layoutY="343.0" mnemonicParsing="false" onAction="#AceptarIdioma" onKeyPressed="#Enter" text="Aceptar" />
+            <Button fx:id="btnCancelar" layoutX="348.0" layoutY="343.0" mnemonicParsing="false" onAction="#Cancelar" onKeyPressed="#Enter" text="Cancelar" />
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>

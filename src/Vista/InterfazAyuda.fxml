@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
+
+<TitledPane fx:id="frame" onKeyPressed="#Salir" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.InterfazAyudaController">
+   <content>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <WebView fx:id="wbAyuda" prefHeight="403.0" prefWidth="602.0" />
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>
