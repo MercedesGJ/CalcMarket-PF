@@ -191,8 +191,9 @@ public class InterfazControlador implements Initializable
             }
         }
     }
-    
+    //Coger tablas seleccionadas
     public Producto getTablaProductosSeleccionados() {
+        
         if (this.table != null) {
             final List<Producto> tabla = (List<Producto>)this.table.getSelectionModel().getSelectedItems();
             if (tabla.size() == 1) {
