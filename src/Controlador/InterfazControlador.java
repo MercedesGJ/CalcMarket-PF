@@ -124,17 +124,17 @@ public class InterfazControlador implements Initializable
             }
         };
     }
-    
+    //Inicializa y le da un modelo :O
     public void initialize(final URL url, final ResourceBundle rb) {
         this.inicializarTablaProducto();
         final ObservableList<Producto> tlProducto = (ObservableList<Producto>)this.table.getSelectionModel().getSelectedItems();
         tlProducto.addListener((ListChangeListener)this.selectorTablaProductos);
     }
-    
+    //No hace nada, creo que me equivoqué al ponerlo, no, no, quería que al añadir un producto se calculara automáticamente, pero ahora tengo miedo de quitarlo por si me da error XD
     @FXML
     private void ModificarTabla(final InputMethodEvent event) {
     }
-    
+    //Método para calcular el precio, por suerte aquí puedo coger la columna específica y le doy un formato para que no salga a 0,00000000000001 :D
     @FXML
     private void Calcular(final ActionEvent event) {
         InterfazControlador.precio = 0.0;
@@ -148,7 +148,7 @@ public class InterfazControlador implements Initializable
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         InterfazControlador.preciofinal = bd.doubleValue();
     }
-    
+    //Método para poner los textfield en blanco :P
     @FXML
     private void nuevo(final ActionEvent event) {
         this.txtNombre.setText("");
@@ -156,7 +156,7 @@ public class InterfazControlador implements Initializable
         this.txtProductos.setText("");
         this.btnEliminar.setDisable(true);
     }
-    
+    //Este método esta creado, pero decidí descartarlo, prefiero 3 botones es más simple.
     private void modificar(final ActionEvent event) {
         final Producto producto = new Producto();
         producto.nombre.set(this.txtNombre.getText());
@@ -164,12 +164,12 @@ public class InterfazControlador implements Initializable
         producto.precio.set(Double.parseDouble(this.txtPrecio.getText()));
         this.productos.add(this.posiciontabla,producto);
     }
-    
+    //Método eliminar, simplemente lo elimina de la tabla.
     @FXML
     private void eliminar(final ActionEvent event) {
         this.productos.remove(this.posiciontabla);
     }
-    
+    //Método guardar, del botón de la parte derecha, lo sé, muchos if, pero por suerte solo lo hice una vez y copie y pegué en el else >.<
     @FXML
     private void guardar(final ActionEvent event) {
         String a = this.txtPrecio.getText();
@@ -191,7 +191,7 @@ public class InterfazControlador implements Initializable
             }
         }
     }
-    //Coger tablas seleccionadas
+    //Te permite seleccionar un producto de la tabla.
     public Producto getTablaProductosSeleccionados() {
         
         if (this.table != null) {
@@ -203,7 +203,7 @@ public class InterfazControlador implements Initializable
         }
         return null;
     }
-    
+    //Para sacar el producto seleccionado en la parte de la derecha en los textos de nombre, precio y número de productos.
     private void ponerProductoSeleccionado() {
         final Producto producto = this.getTablaProductosSeleccionados();
         this.posiciontabla = this.productos.indexOf((Object)producto);
@@ -213,7 +213,7 @@ public class InterfazControlador implements Initializable
             this.txtProductos.setText(String.valueOf(producto.getNump()));
         }
     }
-    
+    //Inicializo la tabla de los productos y le digo que tiene 3 columnas: nombre, precio y nump.
     private void inicializarTablaProducto() {
         this.colNombre.setCellValueFactory((Callback)new PropertyValueFactory("nombre"));
         this.colPrecio.setCellValueFactory((Callback)new PropertyValueFactory("precio"));
@@ -221,21 +221,21 @@ public class InterfazControlador implements Initializable
         this.productos = FXCollections.observableArrayList();
         this.table.setItems((ObservableList)this.productos);
     }
-    
+    //Selecciona el color de fondo ( Espero que la gente no se ponga colores chillones hacen daño a la vista >.<)
     @FXML
     private void SeleccionarColorFondo(final ActionEvent event) {
         final Color color = JColorChooser.showDialog(null, "Elige un color", Color.BLACK);
         final String hexColor = InterfazControlador.colorF = String.format("#%06X", 0xFFFFFF & color.getRGB());
         this.frame.setStyle("-fx-background-color:" + hexColor);
     }
-    
+    //Cambia el color de la tabla (Solo se verá si no hay ningún elemento).
     @FXML
     private void ColorTabla(final ActionEvent event) {
         final Color color = JColorChooser.showDialog(null, "Elige un color", Color.BLACK);
         final String hexColor = InterfazControlador.colorTabla = String.format("#%06X", 0xFFFFFF & color.getRGB());
         this.table.setStyle("-fx-background-color:" + hexColor);
     }
-    
+    //Llama a la ventana de Registrarse
     @FXML
     private void Registrarse(final ActionEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
@@ -246,7 +246,7 @@ public class InterfazControlador implements Initializable
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
-    
+    //Llama a la ventana de iniciar sesión
     @FXML
     private void IniciarSesion(final ActionEvent event) throws IOException {
         final FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/Vista/InterfazIniciarSesion.fxml"));
@@ -268,7 +268,7 @@ public class InterfazControlador implements Initializable
             Logger.getLogger(InterfazControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //El método de llamar a la ventana de seleccionar idioma, le digo que espere y cuando cierre la ventana pone el idioma.
     @FXML
     private void SeleccionarIdioma(final ActionEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
@@ -280,12 +280,12 @@ public class InterfazControlador implements Initializable
         stage.showAndWait();
         this.Idiomas();
     }
-    
+    //Aqui se actualiza para ponerlo al idioma correspondiente
     @FXML
     private void ActualizarTodo(final ActionEvent event) {
         this.Idiomas();
     }
-    
+    //El método de idiomas de la interfaz principal...
     public void Idiomas() {
         final String idioma = InterfazControlador.idioma;
         switch (idioma) {
@@ -459,13 +459,13 @@ public class InterfazControlador implements Initializable
             }
         }
     }
-    
+    //Guarda los parámetros en la base de datos
     @FXML
     private void GuardarParametros(final ActionEvent event) throws SQLException {
         Controlador.GuardarPar(InterfazControlador.colorF, InterfazControlador.colorTabla, InterfazControlador.idioma, InterfazControlador.moneda, InterfazIniciarSesionController.ID);
         JOptionPane.showMessageDialog(null, "Se ha guardado correctamente");
     }
-    
+    //Ventana de seleccionar moneda.
     @FXML
     private void SelecMoneda(final ActionEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
@@ -476,7 +476,7 @@ public class InterfazControlador implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
     }
-    
+    //Ventana de conversión de moneda
     @FXML
     private void Conversiondemoneda(final ActionEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
@@ -487,7 +487,7 @@ public class InterfazControlador implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
     }
-    
+    //Ventana ayuda
     @FXML
     private void SacarAyuda(final ActionEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
@@ -498,7 +498,7 @@ public class InterfazControlador implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
     }
-    
+    //Ventana agradecimientos 
     @FXML
     private void SacarAgradecimientos(final ActionEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
@@ -509,7 +509,7 @@ public class InterfazControlador implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
     }
-    
+    //Esto es los valores por defecto, aunque creo que se ha cambiado por el instalador (Pero no voy a modificarlo, tengo miedo de que se rompa xD)
     static {
         InterfazControlador.idioma = "ESP";
         InterfazControlador.moneda = "\u20ac";
